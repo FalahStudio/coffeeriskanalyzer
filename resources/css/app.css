@@ -39,3 +39,9 @@
         src: url("public/assets/Manrope-ExtraBold.ttf");
     }
 }
+
+.dataTables_empty {
+    text-align: center;
+    padding: 32px 0;
+    border-bottom: 1px solid #d0d5dd;
+}

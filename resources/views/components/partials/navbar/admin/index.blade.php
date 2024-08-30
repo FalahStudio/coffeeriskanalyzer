@@ -1,7 +1,7 @@
 
 
 <nav class="bg-white shadow-sm">
-    <div class="max-w-screen-none flex flex-wrap items-center justify-end sm:justify-between mx-auto py-5 px-10 sm:py-7">
+    <div class="max-w-screen-2xl flex flex-wrap items-center justify-end sm:justify-between mx-auto py-5 px-10 sm:py-7">
         <a href="{{ !empty($route) ? route($route) : '#' }}" class="items-center space-x-3 hidden sm:flex">
             <span class="self-center text-xl-body-medium text-primary-700 whitespace-nowrap">{{ $title ?? 'Dashboard' }}</span>
         </a>
@@ -19,6 +19,7 @@
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
                         </svg>
                     </button>
+
                     <!-- Dropdown menu -->
                     <div id="profileDropdown" class="z-10 hidden p-2 rounded border border-neutral-400 bg-white">
                         <ul aria-labelledby="dropdownLargeButton">
