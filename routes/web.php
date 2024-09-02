@@ -1,12 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\Dashboard;
+use App\Http\Controllers\Auth\Admin\AdminAuthentication;
 use Illuminate\Support\Facades\Route;
 
-// Default Routing
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+// Authentication
+Route::get('/login', [AdminAuthentication::class, 'index']);
+Route::get('/register', [AdminAuthentication::class, 'create']);
 
-Route::get('/', function () {
-    return view('pages.testing');
-});
+// Admin
+Route::get('/dashboard', [Dashboard::class, 'index']);

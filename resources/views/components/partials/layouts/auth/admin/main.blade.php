@@ -16,27 +16,33 @@
 </head>
 <body>
 
-    <main class="grid grid-cols-1 mx-auto h-screen max-w-4xl w-full gap-10">
+    <main class="grid grid-cols-1 lg:grid-cols-2 items-center w-full h-screen gap-10">
         <div class="w-full h-full hidden lg:block">
             <div class="relative w-full h-full">
                 <div class="h-screen overflow-hidden w-full">
-                    <img src="{{ asset('assets/images/bg-auth.png') }}" alt="background auth from unsplash" class="h-full w-full object-cover object-center" />
+                    <img src="{{ asset('assets/images/background/bg-auth.png') }}" alt="background auth from unsplash" class="h-full w-full object-cover object-center" />
                 </div>
             </div>
         </div>
         
-        <div class="w-full h-full py-8 px-8 flex flex-col justify-between gap-8">
-            <div class="flex flex-col gap-16 justify-center h-full">
+        <div class="w-full h-full py-8 px-8 flex flex-col justify-between gap-8 items-center">
+            <p class="text-center w-full text-neutral-950 text-lg-body-semibold">
+                {{ config('app.name') }}
+            </p>
+
+            <div class="flex flex-col gap-16 justify-center h-full w-full">
                 <div class="flex flex-col gap-6 items-center">
-                    <h5 class="font-semibold text-3xl text-center">Risk Analysis Web Application</h5>
-                    <p class="text-base text-neutral-600 w-full lg:w-3/4 text-center">Aplikasi web yang mempermudah dan meningkatkan akurasi dalam menganalisis risiko kopi untuk kebutuhan Anda.</p>
+                    <h5 class="text-md-display-semibold text-center">{{ $title }}</h5>
+                    <p class="text-md-body-regular text-neutral-600 w-full text-center">
+                        Akses akun Anda untuk mengelola pengaturan dan melihat data Anda.
+                    </p>
                 </div>
 
                 @yield('content')
             </div>
 
-            <p class="text-center w-full text-neutral-500">
-                &copy; {{ date('Y') }} Aiman - All Right Reserved
+            <p class="text-center w-full text-neutral-600 text-sm-body-regular">
+                &copy; {{ date('Y') . ' ' . config('app.name')}} - All Right Reserved
             </p>
         </div>
     </main>
