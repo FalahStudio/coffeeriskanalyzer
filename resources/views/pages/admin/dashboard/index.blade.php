@@ -13,6 +13,7 @@
                     'Waktu Berakhir',
                     'Pakar / Credential',
                 ]"
+                :button=true
             >
                 <tr class="border-b border-neutral-400">
                     <td class="text-center px-5 py-9">1</td>
@@ -81,4 +82,5 @@
 
 @push('scripts')
     <script src="{{ asset('assets/js/tables.js') }}"></script>
+    <script src="{{ asset('assets/js/modalNextButton.js') }}"></script>
 @endpush
