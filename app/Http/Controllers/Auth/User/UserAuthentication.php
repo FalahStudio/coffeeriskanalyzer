@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Auth\Admin;
+namespace App\Http\Controllers\Auth\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdminAuthentication extends Controller
+class UserAuthentication extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+     public function index()
     {
         $data = [
             'title' => 'Sign In',
         ];
 
-        return view('pages.auth.admin.login.index', $data);
+        return view('pages.auth.user.login.index', $data);
     }
 
     /**
@@ -24,12 +24,7 @@ class AdminAuthentication extends Controller
      */
     public function create()
     {
-        $data = [
-            'title' => 'Sign Up
-            ',
-        ];
-
-        return view('pages.auth.admin.register.index', $data);
+        //
     }
 
     /**

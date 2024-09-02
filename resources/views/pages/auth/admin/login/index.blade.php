@@ -25,6 +25,7 @@
                 color="primary"
                 buttonClass="justify-center w-full"
                 weight="regular"
+                type="submit"
             />
         </form>
     </section>
