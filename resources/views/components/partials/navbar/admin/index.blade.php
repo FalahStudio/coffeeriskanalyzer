@@ -60,4 +60,6 @@
     desc="Semua perubahan yang belum disimpan akan hilang"
     cancelButton="Batal"
     confirmButton="Ya, Keluar"
+    :useForm="true"
+    formRoute="logout"
 />

@@ -10,6 +10,7 @@
                 label="Email"
                 placeholder="Masukkan email anda disini"
                 :required="false"
+                :error="$errors->first('email')"
             />
         
             <x-input.inputField
@@ -18,14 +19,16 @@
                 label="Password"
                 placeholder="Masukkan password anda disini"
                 :required="false"
+                :error="$errors->first('password')"
             />
         
             <x-input.inputField
-                inputId="confirm_password"
+                inputId="password_confirmation"
                 type="password"
                 label="Password"
                 placeholder="Konfirmasi password anda disini"
                 :required="false"
+                :error="$errors->first('password_confirmation')"
             />
 
             <x-button.index
@@ -33,6 +36,7 @@
                 color="primary"
                 buttonClass="justify-center w-full"
                 weight="regular"
+                type="submit"
             />
         </form>
     </section>

@@ -3,7 +3,9 @@
     'title' => 'Apakah data yang anda isi sudah benar?',
     'desc' => 'Pastikan jawaban anda sudah benar, karena data tidak akan dapat di edit kembali setelah anda klik proses data',
     'cancelButton' => 'Edit kembali',
-    'confirmButton' => 'Ya, Proses data'
+    'confirmButton' => 'Ya, Proses data',
+    'useForm' => false,
+    'formRoute' => ''
 ])
 
 <div id="{{ $modalId }}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-screen max-h-full bg-[#8098A2B3]" >
@@ -30,12 +32,25 @@
                     {{ $cancelButton }}
                 </button>
 
-                <button 
-                    type="submit"
-                    class="w-full py-2.5 px-5 ms-3 text-sm font-medium text-neutral-50 bg-primary-700 hover:bg-primary-800 focus:outline-none rounded-lg border border-neutral-200  hover:text-neutral-50 focus:z-10 focus:ring-4 focus:ring-neutral-100"
-                >
-                    {{ $confirmButton }}
-                </button>
+                @if ($useForm)
+                    <form action="{{ !empty($formRoute) ? route($formRoute) : '' }}" method="POST" class="w-full">
+                        @csrf
+                        
+                        <button 
+                            type="submit"
+                            class="w-full py-2.5 px-5 ms-3 text-sm font-medium text-neutral-50 bg-primary-700 hover:bg-primary-800 focus:outline-none rounded-lg border border-neutral-200  hover:text-neutral-50 focus:z-10 focus:ring-4 focus:ring-neutral-100"
+                        >
+                            {{ $confirmButton }}
+                        </button>
+                    </form>
+                @else
+                    <button 
+                        type="submit"
+                        class="w-full py-2.5 px-5 ms-3 text-sm font-medium text-neutral-50 bg-primary-700 hover:bg-primary-800 focus:outline-none rounded-lg border border-neutral-200  hover:text-neutral-50 focus:z-10 focus:ring-4 focus:ring-neutral-100"
+                    >
+                        {{ $confirmButton }}
+                    </button>
+                @endif
             </div>
         </div>
     </div>

@@ -10,6 +10,7 @@
                 label="Email"
                 placeholder="Masukkan email anda disini"
                 :required="false"
+                 :error="$errors->first('email')"
             />
         
             <x-input.inputField
@@ -18,6 +19,7 @@
                 label="Password"
                 placeholder="Masukkan password anda disini"
                 :required="false"
+                :error="$errors->first('password')"
             />
 
             <x-button.index

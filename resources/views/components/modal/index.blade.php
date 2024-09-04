@@ -6,7 +6,8 @@
 <div id="{{ $id }}" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-screen max-h-full bg-[#8098A2B3]" style="justify-content: end !important;">
     <div class="relative p-4 w-full max-w-2xl h-screen">
         <!-- Modal content -->
-        <div class="h-[calc(100vh-32px)] overflow-hidden border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+        <form method="POST" class="h-[calc(100vh-32px)] overflow-hidden border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+            @csrf
 
             {{-- Header --}}
             <div class="flex flex-shrink-0 items-center justify-between p-6 border-b border-gray-200 rounded-t-md">
@@ -53,7 +54,7 @@
                     <div>
                         <label for="end_date" class="block mb-3 text-lg-body-medium text-neutral-800">Batas waktu pengisian<span class="text-primary-700">*</span></label>
                         <div class="relative">
-                            <input datepicker id="end_date" type="text" class="bg-white border border-neutral-400 text-neutral-800 text-lg-body-medium placeholder:text-neutral-500 rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full py-3 ps-4 pe-10" placeholder="Pilih tanggal" value="{{ date('m/d/Y') }}">
+                            <input datepicker id="end_date" type="text" class="bg-white border border-neutral-400 text-neutral-800 text-lg-body-medium placeholder:text-neutral-500 rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full py-3 ps-4 pe-10" placeholder="Pilih tanggal" name="end_date" value="{{ date('m/d/Y') }}">
                             <div class="absolute inset-y-0 end-0 flex items-center pe-4 pointer-events-none">
                                 <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                 <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
@@ -61,6 +62,15 @@
                             </div>
                         </div>
                     </div>
+
+                    <x-input.inputField
+                        inputId="statusModal"
+                        type="hidden"
+                        label=""
+                        placeholder=""
+                        value="createRisk"
+                        :required="false"
+                    />
                 </div>
 
                 <!-- Dynamic Input Fields -->
@@ -100,6 +110,6 @@
                     />
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>

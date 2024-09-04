@@ -72,6 +72,17 @@ $(document).ready(function () {
                 return;
             }
 
+            if (riskCount <= 2) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Terjadi Kesalahan",
+                    text: "Jumlah resiko minimal 3.",
+                    confirmButtonText: "OK",
+                    confirmButtonColor: "#039855",
+                });
+                return;
+            }
+
             if (
                 expertOne === "" ||
                 expertTwo === "" ||
@@ -114,7 +125,6 @@ $(document).ready(function () {
     };
 
     const handlePrev = () => {
-        // Save current risk data
         $("#input_risk_second .input-field").each(function () {
             riskData[this.id] = $(this).val();
         });
@@ -123,7 +133,71 @@ $(document).ready(function () {
         showStep(currentStep);
     };
 
-    showStep(currentStep);
+    async function getData(riskSchema) {
+        try {
+            let url = "/get/schema/" + riskSchema;
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+
+            const json = await response.json();
+            return json;
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
+    const initializeModal = (mode, riskSchema = {}) => {
+        currentStep = 1;
+        riskData = {};
+
+        if (mode === "duplicate") {
+            getData(riskSchema)
+                .then((dataDuplicate) => {
+                    if (dataDuplicate) {
+                        $("#amount_of_risk").val(dataDuplicate.risk);
+                        $("#expert_one").val(dataDuplicate.expert_one);
+                        $("#expert_two").val(dataDuplicate.expert_two);
+                        $("#expert_three").val(dataDuplicate.expert_three);
+                        $("#end_date").val(dataDuplicate.end_date);
+
+                        const decodedRiskData = atob(dataDuplicate.data_risk);
+
+                        const riskArray = JSON.parse(decodedRiskData);
+
+                        riskArray.forEach((risk, index) => {
+                            riskData[`risk_${index + 1}`] = risk;
+                        });
+
+                        showStep(currentStep);
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        } else {
+            // Reset modal untuk mode create
+            $("#amount_of_risk").val("");
+            $("#expert_one").val("");
+            $("#expert_two").val("");
+            $("#expert_three").val("");
+            $("#end_date").val("");
+
+            showStep(currentStep);
+        }
+    };
+
+    // Event listener untuk memanggil fungsi initializeModal
+    $("#create_button").on("click", function () {
+        initializeModal("create");
+    });
+
+    $("#duplicate_button").on("click", function () {
+        const schemaData = $("#duplicate_button").data("schema-risk");
+        initializeModal("duplicate", schemaData);
+    });
 
     $("#schema_next_button_modal").on("click", handleNext);
     $("#schema_prev_button_modal").on("click", handlePrev);

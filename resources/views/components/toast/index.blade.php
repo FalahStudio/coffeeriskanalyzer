@@ -1,6 +1,8 @@
 @php
     $notificationType = session('success') ? 'success' : (session('error') ? 'error' : null);
     $iconType = session('success') ? 'success' : 'error';
+    $message = session('success') ? 'success' : 'error';
+    $title = session('success') ? 'success' : 'error';
 @endphp
 
 @if ($notificationType)
@@ -21,21 +23,21 @@
             <div class="flex flex-col gap-2">
                 <h5 class="text-neutral-900 font-semibold text-sm">
                     @if ($iconType === 'success')
-                        Data kuisioner anda berhasil disimpan!
+                        {{ session('success')['title'] }}
                     @elseif ($iconType === 'error')
-                        Terjadi kesalahan saat menyimpan kuisioner.
+                        {{ session('error')['title'] }}
                     @endif
                 </h5>
                 <span class="text-neutral-600 text-sm">
                     @if ($iconType === 'success')
-                        {{ session('success') }}
+                        {{ session('success')['desc'] }}
                     @elseif ($iconType === 'error')
-                        {{ session('error') }}
+                        {{ session('error')['desc'] }}
                     @endif
                 </span>
 
                 <div class="mt-2">
-                    <button id="close_toast" class="text-neutral-600 font-medium text-sm">
+                    <button id="close_toast" class="text-neutral-600 font-medium text-sm hover:text-{{ ($iconType === 'success') ? 'primary' : 'red' }}-500">
                         Tutup
                     </button>
                 </div>

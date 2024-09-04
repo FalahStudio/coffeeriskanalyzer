@@ -17,6 +17,8 @@
 <body>
     <x-partials.navbar.admin />
 
+    <x-toast/>
+
     <main class="mt-10 md:mt-20 max-w-screen-2xl mx-auto px-10">
         @yield('content')
     </main>
@@ -32,6 +34,9 @@
 
     {{-- SweetAlert2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- Toast --}}
+    <script src="{{ asset('assets/js/toast.js') }}"></script>
 
     @stack('scripts')
 </body>
