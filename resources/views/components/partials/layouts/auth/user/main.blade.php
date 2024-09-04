@@ -13,12 +13,15 @@
 
     {{-- DataTable --}}
     <link href="https://cdn.datatables.net/1.13.7/css/dataTables.tailwindcss.min.css" rel="stylesheet">
+
+    {{-- Custom CSS --}}
+    @yield('style')
 </head>
 <body>
     <x-toast/>
-
-    <main class="grid grid-cols-1 md:grid-cols-2 items-center w-full h-screen gap-10">
-        <div class="w-full h-full hidden md:block">
+    
+    <main class="grid {{ request()->is('/') ? 'md:grid-cols-2' : 'grid-cols-1 mx-auto max-w-4xl w-full' }} items-center h-screen gap-10">
+        <div class="w-full h-full {{ request()->is('/') ? 'hidden lg:block' : 'hidden' }}">
             <div class="relative w-full h-full">
                 <div class="h-screen overflow-hidden w-full">
                     <img src="{{ asset('assets/images/background/bg-auth.png') }}" alt="background auth from unsplash" class="h-full w-full object-cover object-center" />

@@ -45,3 +45,13 @@
     padding: 32px 0;
     border-bottom: 1px solid #d0d5dd;
 }
+
+.select__ism:not([size]) {
+    background-image: none !important;
+    background-position: 0 !important;
+    background-repeat: no-repeat;
+    background-size: 0 !important;
+    padding-right: 8px !important;
+    /* -webkit-print-color-adjust: exact; */
+    print-color-adjust: exact;
+}

@@ -4,7 +4,9 @@ use App\Http\Controllers\Admin\Dashboard;
 use App\Http\Controllers\Admin\Settings;
 use App\Http\Controllers\Auth\Admin\AdminAuthentication;
 use App\Http\Controllers\Auth\User\UserAuthentication;
+use App\Http\Controllers\User\IsmController;
 use App\Http\Controllers\User\UserGuide;
+use App\Http\Controllers\User\WaitingController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +21,7 @@ Route::post('/logout', [AdminAuthentication::class, 'logout'])->name('logout');
 
 // Authentication User
 Route::get('/', [UserAuthentication::class, 'index'])->name('home');
+Route::post('/', [UserAuthentication::class, 'checkMail']);
 
 // Admin
 Route::middleware([AdminMiddleware::class])->group(function() {
@@ -33,3 +36,11 @@ Route::middleware([AdminMiddleware::class])->group(function() {
 
 // User
 Route::get('/user-guide', [UserGuide::class, 'index']);
+Route::get('/{userId}', [UserAuthentication::class, 'loginUser']);
+Route::post('/{userId}', [UserAuthentication::class, 'loginUserCheck']);
+
+Route::get('/{userId}/schema/{schemaId}/ism', [IsmController::class, 'index']);
+
+Route::get('/{userId}/schema/{schemaId}/fuzzy', [UserAuthentication::class, 'loginUserCheck']);
+
+Route::get('/{userId}/schema/{schemaId}/waiting-for-another', [WaitingController::class, 'index']);
