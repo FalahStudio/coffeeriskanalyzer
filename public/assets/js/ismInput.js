@@ -1,9 +1,8 @@
 $(document).ready(function () {
-    const descriptionTooltip = [
-        "Perencanaan yang tidak tepat akibat perubahan iklim",
-        "Kurangnya perawatan tanaman",
-        "Penyakit tanaman",
-    ];
+    const descRisk = $("#matrix-form").data("desc-risk");
+    const decodedRiskData = atob(descRisk);
+
+    const descriptionTooltip = JSON.parse(decodedRiskData);
 
     const generateTooltipHTML = (id, text) => `
         <div id='${id}' role='tooltip' class='absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-neutral-600 transition-opacity duration-300 bg-white rounded-lg tooltip shadow-[0px_4px_8px_-2px_#10182810,0px_4px_8px_-2px_#10182806] border border-neutral-300'>

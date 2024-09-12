@@ -143,145 +143,31 @@
                                 <div class="relative overflow-x-auto w-full">
                                     <div class="grid grid-cols-4 gap-6">
                                         
-                                        <div class="col-span-1 flex flex-col gap-2">
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-3 font-medium text-neutral-800">1</span>
-                                                <span>:</span>
-                                                <span>Perencanaan yang tidak tepat akibat perubahan iklim</span>
-                                            </div>
-                                            
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-3 font-medium text-neutral-800">2</span>
-                                                <span>:</span>
-                                                <span>Kurangnya perawatan tanaman</span>
-                                            </div>
+                                        @php
+                                            $decodedRiskData = base64_decode($riskData->data_risk);
+                                            $dataRisk = json_decode($decodedRiskData, true); // Assuming $dataRisk is an array
 
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-3 font-medium text-neutral-800">3</span>
-                                                <span>:</span>
-                                                <span>Penyakit tanaman</span>
-                                            </div>
+                                            $totalItems = count($dataRisk);
+                                            $itemsPerColumn = ceil($totalItems / 4);
+                                        @endphp
 
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-3 font-medium text-neutral-800">4</span>
-                                                <span>:</span>
-                                                <span>Kurangnya jumlah tenaga kerja</span>
-                                            </div>
+                                        @for ($i = 0; $i < 4; $i++)
+                                            <div class="col-span-1 flex flex-col gap-2">
+                                                @php
+                                                    $startIndex = $i * $itemsPerColumn;
+                                                    $columnItems = array_slice($dataRisk, $startIndex, $itemsPerColumn);
+                                                @endphp
 
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-3 font-medium text-neutral-800">5</span>
-                                                <span>:</span>
-                                                <span>Harga pupuk yang fluktuatif</span>
+                                                @foreach ($columnItems as $index => $item)
+                                                    <div class="flex items-top gap-3 text-neutral-600 text-sm">
+                                                        <span class="mr-1 font-medium text-neutral-800">{{ $startIndex + $index + 1 }}</span>
+                                                        <span>:</span>
+                                                        <span>{{ $item }}</span>
+                                                    </div>
+                                                @endforeach
                                             </div>
+                                        @endfor
 
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-3 font-medium text-neutral-800">6</span>
-                                                <span>:</span>
-                                                <span>Ketersediaan air tidak memadai</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-span-1 flex flex-col gap-2">
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-3 font-medium text-neutral-800">7</span>
-                                                <span>:</span>
-                                                <span>Tenaga kerja kurang terampil</span>
-                                            </div>
-                                            
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-3 font-medium text-neutral-800">8</span>
-                                                <span>:</span>
-                                                <span>Terdapat hama</span>
-                                            </div>
-
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-3 font-medium text-neutral-800">9</span>
-                                                <span>:</span>
-                                                <span>Pemanenan tidak serentak</span>
-                                            </div>
-
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-1 font-medium text-neutral-800">10</span>
-                                                <span>:</span>
-                                                <span>Kualitas buah kopi yang tidak sesuai dengan standar</span>
-                                            </div>
-
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-1 font-medium text-neutral-800">11</span>
-                                                <span>:</span>
-                                                <span>Kualitas biji kopi yang rendah</span>
-                                            </div>
-
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-1 font-medium text-neutral-800">12</span>
-                                                <span>:</span>
-                                                <span>Mesin yang digunakan tidak stabil</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-span-1 flex flex-col gap-2">
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-1 font-medium text-neutral-800">13</span>
-                                                <span>:</span>
-                                                <span>Pekerja kesulitan mengoperasikan mesin</span>
-                                            </div>
-                                            
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-1 font-medium text-neutral-800">14</span>
-                                                <span>:</span>
-                                                <span>Terbuangnya kopi akibat tidak tersangrai dengan sempurna</span>
-                                            </div>
-
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-1 font-medium text-neutral-800">15</span>
-                                                <span>:</span>
-                                                <span>Terdapat kerikil pada biji kopi yang telah disangrai</span>
-                                            </div>
-
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-1 font-medium text-neutral-800">16</span>
-                                                <span>:</span>
-                                                <span>Kurang memadainya peralatan</span>
-                                            </div>
-
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-1 font-medium text-neutral-800">17</span>
-                                                <span>:</span>
-                                                <span>Kurang menariknya kemasan yang digunakan</span>
-                                            </div>
-
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-1 font-medium text-neutral-800">18</span>
-                                                <span>:</span>
-                                                <span>Kebersihan tempat penyimpanan kurang</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-span-1 flex flex-col gap-2">
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-1 font-medium text-neutral-800">19</span>
-                                                <span>:</span>
-                                                <span>Terjadi keterlambatan pengiriman/span>
-                                            </div>
-                                            
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-1 font-medium text-neutral-800">20</span>
-                                                <span>:</span>
-                                                <span>Rendahnya tingkat kepuasan konsumen</span>
-                                            </div>
-
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-1 font-medium text-neutral-800">21</span>
-                                                <span>:</span>
-                                                <span>Profit yang dihasilkan tidak stabil</span>
-                                            </div>
-
-                                            <div class="flex items-top gap-3 text-neutral-600 text-sm">
-                                                <span class="mr-1 font-medium text-neutral-800">22</span>
-                                                <span>:</span>
-                                                <span>Pemutusan kerjasama antar pemasok dengan distributor</span>
-                                            </div>
-                                        </div>
 
                                     </div>
                                 </div>
@@ -307,7 +193,7 @@
                 </div>
 
                 <div id="matrix-container" class="w-full overflow-x-auto">
-                    <div id="matrix-form" data-risk="{{ $riskData->risk }}" class="flex flex-col flex-nowrap overflow-x-auto gap-2"></div>
+                    <div id="matrix-form" data-risk="{{ $riskData->risk }}" data-desc-risk="{{ $riskData->data_risk }}" class="flex flex-col flex-nowrap overflow-x-auto gap-2"></div>
                 </div>
                 
             </form>

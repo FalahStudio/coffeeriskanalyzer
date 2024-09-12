@@ -15,13 +15,21 @@
     <link href="https://cdn.datatables.net/1.13.7/css/dataTables.tailwindcss.min.css" rel="stylesheet">
 </head>
 <body>
-    <x-partials.navbar.user />
+    <div class="h-screen flex flex-col justify-between pb-6">
+        <section>
+            <x-partials.navbar.user />
 
-    <x-toast/>
+            <x-toast/>
 
-    <main class="mt-10 md:mt-20 max-w-screen-2xl mx-auto px-10">
-        @yield('content')
-    </main>
+            <main class="mt-10 md:mt-20 max-w-screen-2xl mx-auto px-10">
+                @yield('content')
+            </main>
+        </section>
+
+        <p class="text-center w-full text-neutral-600 text-sm-body-regular">
+            &copy; {{ date('Y') . ' ' . config('app.name')}} - All Right Reserved
+        </p>
+    </div>
 
     {{-- Jquery --}}
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

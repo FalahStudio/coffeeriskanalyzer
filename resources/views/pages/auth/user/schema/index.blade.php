@@ -8,7 +8,11 @@
             <div>
                 <label for="schema" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih skema analitik yang akan anda isi</label>
                 <select id="schema" class="select2 bg-white border {{ $errors->first('schema') ? 'border-red-500' : 'border-neutral-400 ' }} text-neutral-800 text-lg rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full py-3 px-4" name="schema">
-                    <option value="" disabled selected hidden>Choose a country</option>
+                    <option value="" disabled selected hidden>Pilih Skema</option>
+                    @if (empty($schemaData))
+                        <option value="" disabled class="text-center">Tidak ada data yang di temukan</option>
+                    @endif
+
                     @foreach ($schemaData as $schema)
                         <option value="{{ $schema->id }}">Di Undang Tgl {{ \Carbon\Carbon::parse($schema->created_at)->setTimezone('Asia/Jakarta')->format('d F Y') }}</option>
                     @endforeach

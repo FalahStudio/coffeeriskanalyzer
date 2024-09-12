@@ -121,7 +121,6 @@ class UserAuthentication extends Controller
             $schema = $request->schema;
             $checkSchema = $this->schema->where('id', $schema)->first();
 
-
             if ($checkSchema) {
                 $userInput = $this->result->where('schema_id', $checkSchema->id)->where('key', 'ism_' . $userId)->first();
 
