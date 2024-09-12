@@ -15,12 +15,7 @@ $(document).ready(function () {
         let array = [];
 
         // Create header row
-        let columnHeader =
-            "<div class='" +
-            (matrixCount >= 12
-                ? "flex gap-2"
-                : "grid grid-cols-" + (matrixCount + 1) + " gap-2") +
-            "'>";
+        let columnHeader = "<div class='flex gap-2'>";
 
         columnHeader += `
             <div class='min-w-11 text-center flex justify-center items-center bg-neutral-50 border border-neutral-400 text-neutral-600 text-sm rounded-lg w-full p-2 cursor-pointer'></div>
@@ -41,12 +36,7 @@ $(document).ready(function () {
 
         for (let i = 1; i <= matrixCount; i++) {
             let rowInputs = [];
-            let rowContent =
-                "<div class='" +
-                (matrixCount >= 12
-                    ? "flex gap-2 flex-row w-full"
-                    : "grid grid-cols-" + (matrixCount + 1) + " gap-2") +
-                "'>";
+            let rowContent = "<div class='flex gap-2 flex-row w-full'>";
             rowContent += `
                 <div class='min-w-11 text-center flex justify-center items-center bg-neutral-50 border border-neutral-400 text-neutral-600 text-sm rounded-lg w-full p-2 cursor-pointer' data-tooltip-target='tooltip-default-ei${i}' data-tooltip-placement='right'>
                     ${i}

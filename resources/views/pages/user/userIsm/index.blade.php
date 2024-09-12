@@ -14,57 +14,28 @@
                         <p class="text-neutral-600 text-base">Harap isi form dibawah ini dengan opsi jawaban yang telah disediakan</p>
                     </div>
 
-                    <button
-                        data-modal-target="modal-confirmation"
-                        data-modal-toggle="modal-confirmation"
-                        class="h-full text-neutral-50 bg-primary-700 hover:bg-primary-800 font-medium rounded-lg text-base px-5 py-2.5 focus:outline-none""
-                        type="button"
-                    >
-                        Proccess Data
-                    </button>
+                    <x-button.index
+                        title="Proccess Data"
+                        color="primary"
+                        weight='semibold'
+                        fontSize='sm'
+                        iconSize='2.5'
+                        iconMargin='ms-2.5'
+                        :withModal="true"
+                        modalType="confirmation"
+                    />
 
                 </div>
 
                 {{-- Modal Confirmation --}}
-                <div
-                    id="modal-confirmation"
-                    tabindex="-1"
-                    aria-hidden="true"
-                    class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
-                >
-                    <div 
-                        class="relative p-4 w-full max-w-2xl max-h-full">
-
-                        <div class="relative bg-white rounded-lg shadow p-10">
-
-                            <div class="text-center ">
-
-                                <div class="space-y-3">
-                                    <h5 class="font-semibold text-xl text-neutral-950">Apakah data yang anda isi sudah benar?</h5>
-                                    <p class="font-neutral text-sm text-600">Pastikan jawaban anda sudah benar, karena data tidak akan dapat di edit kembali setelah anda klik proses data</p>
-                                </div>
-                            </div>
-
-
-                            <div class="flex items-center mt-10">
-                                <button
-                                    data-modal-hide="modal-confirmation"
-                                    type="button"
-                                    class="w-full py-2.5 px-5 ms-3 text-sm font-medium text-neutral-900 focus:outline-none bg-neutral-50 rounded-lg border border-neutral-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-neutral-100"
-                                >
-                                    Edit kembali
-                                </button>
-
-                                <button 
-                                    type="submit"
-                                    class="w-full py-2.5 px-5 ms-3 text-sm font-medium text-neutral-50 bg-primary-700 hover:bg-primary-800 focus:outline-none rounded-lg border border-neutral-200  hover:text-neutral-50 focus:z-10 focus:ring-4 focus:ring-neutral-100"
-                                >
-                                    Ya, Proses data
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <x-modal.confirmation
+                    title="Apakah data yang anda isi sudah benar?"
+                    desc="Pastikan jawaban anda sudah benar, karena data tidak akan dapat di edit kembali setelah anda klik proses data"
+                    cancelButton="Edit kembali"
+                    confirmButton="Ya, Proses data"
+                    :useForm="true"
+                    formRoute="logout"
+                />
                 {{-- End Modal Confirmation --}}
 
                 {{-- Description --}}
@@ -200,6 +171,16 @@
         </div>
 
     </section>
+
+    {{-- Modal --}}
+    <x-modal.confirmation
+        title="Apakah Anda yakin ingin keluar?"
+        desc="Semua perubahan yang belum disimpan akan hilang"
+        cancelButton="Batal"
+        confirmButton="Ya, Keluar"
+        :useForm="true"
+        formRoute="logout"
+    />
 @endsection
 
 @push('scripts')
