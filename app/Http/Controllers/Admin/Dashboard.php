@@ -17,7 +17,7 @@ class Dashboard extends Controller
     {
         $data = [
             'title'      => 'Dashboard',
-            'schemaData' => $this->risk->all(),
+            'schemaData' => $this->risk->all()->sortByDesc('created_at'),
         ];
 
         return view('pages.admin.dashboard.index', $data);
@@ -95,16 +95,13 @@ class Dashboard extends Controller
                     return strpos($key, 'risk_') === 0;
                 }, ARRAY_FILTER_USE_KEY);
 
-                $riskValues = array_values($riskData);
-                $riskString = implode(', ', $riskValues);
-
-                $riskData = base64_encode($riskString);
+                $riskDataJson = json_encode(array_values($riskData));
 
                 $dataRisk = [
                     'id'        => Str::uuid(),
                     'schema_id' => $schemaStore->id,
                     'risk'      => $request['risk'],
-                    'data_risk' => $riskData,
+                    'data_risk' => $riskDataJson,
                 ];
 
                 $riskStore = $this->risk->create($dataRisk);
