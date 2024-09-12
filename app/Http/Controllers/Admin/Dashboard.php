@@ -84,7 +84,7 @@ class Dashboard extends Controller
             $dataSchema = [
                 'id'        => Str::uuid(),
                 'user_id'   => $expertStore->id,
-                'end_date'  => Carbon::createFromFormat('d/m/Y', $request['end_date'])->format('Y-m-d'),
+                'end_date'  => Carbon::createFromFormat('m/d/Y', $request['end_date'])->format('Y-m-d'),
                 'status'    => 0,
             ];
 
