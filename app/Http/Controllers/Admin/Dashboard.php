@@ -101,7 +101,7 @@ class Dashboard extends Controller
                     'id'        => Str::uuid(),
                     'schema_id' => $schemaStore->id,
                     'risk'      => $request['risk'],
-                    'data_risk' => $riskDataJson,
+                    'data_risk' => base64_encode($riskDataJson),
                 ];
 
                 $riskStore = $this->risk->create($dataRisk);
