@@ -27,17 +27,6 @@
 
                 </div>
 
-                {{-- Modal Confirmation --}}
-                <x-modal.confirmation
-                    title="Apakah data yang anda isi sudah benar?"
-                    desc="Pastikan jawaban anda sudah benar, karena data tidak akan dapat di edit kembali setelah anda klik proses data"
-                    cancelButton="Edit kembali"
-                    confirmButton="Ya, Proses data"
-                    :useForm="true"
-                    formRoute="logout"
-                />
-                {{-- End Modal Confirmation --}}
-
                 {{-- Description --}}
                 <div class="flex flex-col gap-6 p-6 rounded-lg border border-neutral-400">
                     <div class="w-full">
@@ -166,21 +155,19 @@
                 <div id="matrix-container" class="w-full overflow-x-auto">
                     <div id="matrix-form" data-risk="{{ $riskData->risk }}" data-desc-risk="{{ $riskData->data_risk }}" class="flex flex-col flex-nowrap overflow-x-auto gap-2"></div>
                 </div>
-                
+
+                {{-- Modal Confirmation --}}
+                <x-modal.confirmation
+                    title="Apakah data yang anda isi sudah benar?"
+                    desc="Pastikan jawaban anda sudah benar, karena data tidak akan dapat di edit kembali setelah anda klik proses data"
+                    cancelButton="Edit kembali"
+                    confirmButton="Ya, Proses data"
+                />
+                {{-- End Modal Confirmation --}}                
             </form>
         </div>
 
     </section>
-
-    {{-- Modal --}}
-    <x-modal.confirmation
-        title="Apakah Anda yakin ingin keluar?"
-        desc="Semua perubahan yang belum disimpan akan hilang"
-        cancelButton="Batal"
-        confirmButton="Ya, Keluar"
-        :useForm="true"
-        formRoute="logout"
-    />
 @endsection
 
 @push('scripts')

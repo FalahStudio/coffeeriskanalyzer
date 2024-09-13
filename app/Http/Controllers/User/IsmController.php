@@ -51,7 +51,11 @@ class IsmController extends Controller
             $values = array_values($data);
 
             if (in_array('', $values)) {
-                return redirect()->back()->withInput()->with('error', 'Semua input harus diisi');
+                $flash = [
+                    'title' => 'Terjadi Kesalahan',
+                    'desc'  => 'Semua input harus diisi'
+                ];
+                return redirect()->back()->withInput()->with('error', $flash);
             }
             
             $data = implode(' ', $values);
