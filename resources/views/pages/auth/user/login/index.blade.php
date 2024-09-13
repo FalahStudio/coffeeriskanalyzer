@@ -33,7 +33,7 @@
         <div class="flex flex-col gap-2">
             <p class="text-neutral-800 text-lg-body-semibold">Lihat hasil analisis terdahulu</p>
             <div>
-                <a href="#" class="text-md-body-regular text-primary-600">Klik disini</a>
+                <a href="{{ route('history') }}" class="text-md-body-regular text-primary-600">Klik disini</a>
             </div>
         </div>        
     </section>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\Admin\AdminAuthentication;
 use App\Http\Controllers\Auth\User\UserAuthentication;
 use App\Http\Controllers\User\FuzzyController;
 use App\Http\Controllers\User\IsmController;
+use App\Http\Controllers\User\ResultsController;
 use App\Http\Controllers\User\UserGuide;
 use App\Http\Controllers\User\WaitingController;
 use App\Http\Middleware\AdminMiddleware;
@@ -47,3 +48,7 @@ Route::get('/{userId}/schema/{schemaId}/fuzzy', [FuzzyController::class, 'index'
 Route::post('/{userId}/schema/{schemaId}/fuzzy', [FuzzyController::class, 'store']);
 
 Route::get('/{userId}/schema/{schemaId}/waiting-for-another', [WaitingController::class, 'index']);
+
+// History and Result
+ROute::get('/data/history', [ResultsController::class, 'index'])->name('history');
+ROute::get('/data/result/{schemaId}', [ResultsController::class, 'detail'])->name('detail');
