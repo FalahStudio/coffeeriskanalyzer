@@ -167,9 +167,6 @@ class ResultsController extends Controller
                 $avg_x = $count_x > 0 ? $sum_x / $count_x : 0;
                 $avg_y = $count_y > 0 ? $sum_y / $count_y : 0;
 
-                $avg_x_formatted = number_format($avg_x / 10, 2, '.', '');
-                $avg_y_formatted = number_format($avg_y / 10, 2, '.', '');
-
                 $data_line_chart = [
                     'x' => [
                         'max' => [
@@ -204,12 +201,101 @@ class ResultsController extends Controller
                 }
 
                 usort($dataResult, function($a, $b) {
-                    return $a['rank'] <=> $b['rank'];
+                    return $b['frpn'] <=> $a['frpn'];
                 });
 
+                $severity = [
+                    'Tidak ada pengaruh',
+                    'Sistem dapat beroperasi dengan sedikit gangguan',
+                    'Sistem dapat beroperasi dengan penurunan pada beberapa performa',
+                    'Sistem dapat beroperasi namun dengan penurunan performa yang signifikan',
+                    'Sistem tidak dapat beroperasi tanpa kerusakan',
+                    'Sistem tidak dapat beroperasi dengan tingkat kerusakan yang kecil',
+                    'Sistem tidak dapat beroperasi dengan kerusakan pada peralatan',
+                    'Sistem tidak dapat beroperasi dengan kegagalan yang menyebabkan kerusakan',
+                    'Tingkat keparahan sangat tinggi dan dengan peringatan',
+                    'Tingkat keparahan sangat tinggi dan tanpa peringatan',
+                ];
+                
+                $occurance = [
+                    'Kemungkinan Kegagalan <1 dalam 1.500.000',
+                    'Kemungkinan Kegagalan 1 dalam 150.000',
+                    'Kemungkinan Kegagalan 1 dalam 15.000',
+                    'Kemungkinan Kegagalan 1 dalam 2000',
+                    'Kemungkinan Kegagalan 1 dalam 400',
+                    'Kemungkinan Kegagalan 1 dalam 80',
+                    'Kemungkinan Kegagalan 1 dalam 20',
+                    'Kemungkinan Kegagalan 1 dalam 8',
+                    'Kemungkinan Kegagalan 1 dalam 3',
+                    'Kemungkinan Kegagalan >1 dalam 2'
+                ];
+
+                $detection = [
+                    'Kontrol desain akan mendeteksi potensi penyebab/mekanisme potensial kegagalan berikutnya',
+                    'Kontrol desain sangat tinggi kemungkinannya mendeteksi potensi penyebab/mekanisme potensial kegagalan berikutnya',
+                    'Kontrol desain tinggi kemungkinannya mendeteksi potensi penyebab/mekanisme potensial kegagalan berikutnya',
+                    'Kontrol desain cukup tinggi kemungkinannya mendeteksi potensi penyebab/mekanisme potensial kegagalan berikutnya',
+                    'Kontrol desain sedang kemungkinannya mendeteksi potensi penyebab/mekanisme potensial kegagalan berikutnya',
+                    'Kontrol desain kecil kemungkinannya mendeteksi potensi penyebab/mekanisme potensial kegagalan berikutnya',
+                    'Kontrol desain sangat kecil kemungkinannya mendeteksi potensi penyebab/mekanisme potensial kegagalan berikutnya',
+                    'Kontrol desain kecil kemungkinannya mendeteksi potensi penyebab/mekanisme potensial kegagalan berikutnya',
+                    'Kontrol desain sangat kecil kemungkinannya mendeteksi potensi penyebab/mekanisme potensial kegagalan berikutnya',
+                    'Kontrol desain tidak dapat mendeteksi penyebab/mekanisme potensial dan mode kegagalan berikutnya'
+                ];
+
+                $linguistic = [
+                    'Very Low (VL)' => 'Jika dampak/kejadian/deteksi yang ditimbulkan sangat rendah',
+                    'Low (L)' => 'Jika dampak/kejadian/deteksi yang ditimbulkan rendah',
+                    'Medium (M)' => 'Jika dampak/kejadian/deteksi yang ditimbulkan sedang',
+                    'High (H)' => 'Jika dampak/kejadian/deteksi yang ditimbulkan tinggi',
+                    'Very High (VH)' => 'Jika dampak/kejadian/deteksi yang ditimbulkan sangat tinggi'
+                ];
+
+                $severityEncode = json_encode($severity);
+                $occuranceEncode = json_encode($occurance);
+                $detectionEncode = json_encode($detection);
+                $linguisticEncode = json_encode($linguistic);
+
+                $fuzzyInput = $this->result->where('schema_id', $schemaId)->where('key', 'like', 'fuzzy_%')->get();
+                $combinedData = [];
+
+                foreach ($fuzzyInput as $index => $fuzzy) {
+                    $decoded = base64_decode($fuzzy->value);
+                    $decodedValue = json_decode($decoded, true);
+
+                    $expertNum = $index + 1;
+
+                    foreach (['severity', 'occurance', 'detection'] as $type) {
+                        if ($type === 'severity') {
+                            $typeKey = 's';
+                        } elseif ($type === 'occurance') {
+                            $typeKey = 'o';
+                        } elseif ($type === 'detection') {
+                            $typeKey = 'd';
+                        }
+
+                        $expertKey = $typeKey . '_expert' . $expertNum;
+
+                        if (isset($decodedValue[$type])) {
+                            $combinedData[$expertKey] = $decodedValue[$type];
+                        }
+                    }
+
+                    foreach ($decodedValue['linguistic'] as $i => $linguisticArray) {
+                        $combinedData['linguistic'][] = $linguisticArray;
+                    }
+                }
+
                 $finalData = [
+                    'dataDescSOD' => [
+                        'severity' => base64_encode($severityEncode),
+                        'occurance' => base64_encode($occuranceEncode),
+                        'detection' => base64_encode($detectionEncode),
+                        'linguistic' => base64_encode($linguisticEncode),
+                    ],
                     'frpn' => $dataResult,
                     'risk' => $riskData,
+                    'fuzzyInput' => $combinedData,
                     'fuzzy' => $fuzzyData,
                     'ism' => $ismData,
                     'chart' => $data_chart,

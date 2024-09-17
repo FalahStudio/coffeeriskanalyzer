@@ -2,6 +2,10 @@
 
 @section('content')
     <section>
+        @php
+            $dataRiskDecode = base64_decode($result['risk']['data_risk']);
+            $dataRisk = json_decode($dataRiskDecode, true);
+        @endphp
         <div id="matrix-results" class="w-full h-full p-6 lg:p-10 overflow-hidden overflow-x-auto">
             <div class="flex flex-col gap-10 w-full">
                 <div class="flex flex-row justify-between items-center">
@@ -18,7 +22,7 @@
                     </button>
                 </div>
 
-                <div class="grid grid-cols-5 gap-10 p-10 border border-neutral-400 rounded-lg">
+                <div class="flex justify-between flex-wrap gap-4 p-10 border border-neutral-400 rounded-lg">
                     <div id="header_step_1" class="flex flex-col gap-3 active">
                         <div id="header_box_1" class="w-10 h-10 text-neutral-50 shadow-md rounded">
                             <div id="header_box_data_1" class="bg-primary-700 rounded flex justify-center items-center p-2 font-semibold text-base">
@@ -43,7 +47,7 @@
                                 3
                             </div>
                         </div>
-                        <p id="header_text_3" class="text-sm font-medium text-neutral-600">Grafik MICMAC</p>
+                        <p id="header_text_3" class="text-sm font-medium text-neutral-600">ISM Leveling</p>
                     </div>
 
                     <div id="header_step_4" class="flex flex-col gap-3">
@@ -52,7 +56,7 @@
                                 4
                             </div>
                         </div>
-                        <p id="header_text_4" class="text-sm font-medium text-neutral-600">SOD & Linguistik Input</p>
+                        <p id="header_text_4" class="text-sm font-medium text-neutral-600">Grafik MICMAC</p>
                     </div>
 
                     <div id="header_step_5" class="flex flex-col gap-3">
@@ -61,7 +65,16 @@
                                 5
                             </div>
                         </div>
-                        <p id="header_text_5" class="text-sm font-medium text-neutral-600">FRPN / Result</p>
+                        <p id="header_text_5" class="text-sm font-medium text-neutral-600">SOD & Linguistik Input</p>
+                    </div>
+
+                    <div id="header_step_6" class="flex flex-col gap-3">
+                        <div id="header_box_6" class="w-10 h-10 text-neutral-950 shadow-md rounded">
+                            <div id="header_box_data_6" class="bg-white rounded flex justify-center items-center p-2 font-semibold text-base">
+                                6
+                            </div>
+                        </div>
+                        <p id="header_text_6" class="text-sm font-medium text-neutral-600">FRPN / Result</p>
                     </div>
                 </div>
 
@@ -86,6 +99,16 @@
                                 </div>
                             </div>
                         @endforeach
+                    </div>
+
+                    <div class="mt-14">
+                        <x-tabs.description
+                            title="Variabel Risiko"
+                            id="description_dropdown_1"
+                            :dataDesc="$result['risk']['data_risk']"
+                            :withOption="false"
+                            :dataOpen="true"
+                        />
                     </div>
                 </div>
 
@@ -114,6 +137,16 @@
 
                         </div>
                     </div>
+
+                    <div class="mt-14">
+                        <x-tabs.description
+                            title="Variabel Risiko"
+                            id="description_dropdown_2"
+                            :dataDesc="$result['risk']['data_risk']"
+                            :withOption="false"
+                            :dataOpen="true"
+                        />
+                    </div>
                 </div>
 
                 <div id="tabs-header-3" class="flex flex-col gap-6">
@@ -126,6 +159,55 @@
                         <button type="button"
                                 class="h-full text-neutral-600 border border-neutral-400 hover:bg-neutral-100 font-medium rounded-lg text-base px-5 py-2.5 focus:outline-none"
                                 id="next-data-3" data-button-tab="next-tab">
+                            Selanjutnya
+                        </button>
+                    </div>
+                    
+                    <div class="flex flex-col w-full">
+
+                        @foreach ($result['ism']['level'] as $key => $item)
+                            <div class="px-10 py-7 first:border-t first:border-neutral-500 border-b border-neutral-500 w-full border-dashed">
+                                <div class="flex flex-wrap items-center gap-6">
+                                    <div class="min-w-52">
+                                        <p class="text-sm-body-medium">Level {{ $key++ + 1 }}</p> 
+                                    </div>
+
+                                    @foreach ($item as $value)
+                                        <div class="flex flex-wrap gap-20 max-w-20 w-full cursor-pointer" data-tooltip-target="{{ 'level-' . $key . '-' . $value }}" data-tooltip-placement="top">
+                                            <span class="text-md-body-semibold text-neutral-700 bg-primary-100 border border-primary-300 p-2.5 w-full flex justify-center items-center rounded">{{ $value }}</span>
+                                        </div>
+
+                                        <div id='{{ 'level-' . $key . '-' . $value }}' role='tooltip' class='absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-neutral-600 transition-opacity duration-300 bg-white rounded-lg tooltip shadow-[0px_4px_8px_-2px_#10182810,0px_4px_8px_-2px_#10182806] border border-neutral-300'>
+                                            {{ $dataRisk[$value - 1] }}
+                                            <div class='tooltip-arrow' data-popper-arrow></div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="mt-14">
+                        <x-tabs.description
+                            title="Variabel Risiko"
+                            id="description_dropdown_3"
+                            :dataDesc="$result['risk']['data_risk']"
+                            :withOption="false"
+                            :dataOpen="true"
+                        />
+                    </div>
+                </div>
+
+                <div id="tabs-header-4" class="flex flex-col gap-6">
+                    <div class="flex justify-between">
+                        <button type="button"
+                                class="h-full text-neutral-600 border border-neutral-400 hover:bg-neutral-100 font-medium rounded-lg text-base px-5 py-2.5 focus:outline-none"
+                                id="prev-data-4" data-button-tab="prev-tab">
+                            Sebelumnya
+                        </button>
+                        <button type="button"
+                                class="h-full text-neutral-600 border border-neutral-400 hover:bg-neutral-100 font-medium rounded-lg text-base px-5 py-2.5 focus:outline-none"
+                                id="next-data-4" data-button-tab="next-tab">
                             Selanjutnya
                         </button>
                     </div>
@@ -177,21 +259,38 @@
                                     @endforeach
                                 </div>
                             </div>
+
+                            <h5 class="text-center font-bold text-lg">Keterangan</h5>
+
+                            <div class="w-full">
+                                <img src="{{ asset('assets/images/background/Illustration.png') }}" alt="Illustration" />
+                            </div>
+                            
                         </div>
 
                     </div>
+
+                    <div class="mt-14">
+                        <x-tabs.description
+                            title="Variabel Risiko"
+                            id="description_dropdown_4"
+                            :dataDesc="$result['risk']['data_risk']"
+                            :withOption="false"
+                            :dataOpen="true"
+                        />
+                    </div>
                 </div>
 
-                <div id="tabs-header-4" class="flex flex-col gap-6">
+                <div id="tabs-header-5" class="flex flex-col gap-6">
                     <div class="flex justify-between">
                         <button type="button"
                                 class="h-full text-neutral-600 border border-neutral-400 hover:bg-neutral-100 font-medium rounded-lg text-base px-5 py-2.5 focus:outline-none"
-                                id="prev-data-4" data-button-tab="prev-tab">
+                                id="prev-data-5" data-button-tab="prev-tab">
                             Sebelumnya
                         </button>
                         <button type="button"
                                 class="h-full text-neutral-600 border border-neutral-400 hover:bg-neutral-100 font-medium rounded-lg text-base px-5 py-2.5 focus:outline-none"
-                                id="next-data-4" data-button-tab="next-tab">
+                                id="next-data-5" data-button-tab="next-tab">
                             Selanjutnya
                         </button>
                     </div>
@@ -239,43 +338,43 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($sodData as $index => $item)
+                                    @foreach ($result['fuzzyInput']['s_expert1'] as $index => $item)
                                         <tr class="bg-white text-neutral-600 last:border-b-0 border-b border-neutral-400">
                                             <td scope="row" class="px-6 py-4 text-center">
-                                                {{ $item['code'] }}
+                                                {{ $result['fuzzy']['output_fuzzy'][$index]['risk_code'] }}
                                             </td>
                                             <td class="px-6 py-4">
-                                                {{ $item['risk'] }}
+                                                {{ $result['fuzzy']['output_fuzzy'][$index]['risk_component'] }}
                                             </td>
                                             <td class="px-6 py-4 text-center">
-                                                {{ $item['s_expert1'] }}
+                                                {{ $result['fuzzyInput']['s_expert1'][$index] }}
                                             </td>
                                             <td class="px-6 py-4 text-center">
-                                                {{ $item['o_expert1'] }}
+                                                {{ $result['fuzzyInput']['o_expert1'][$index] }}
                                             </td>
                                             <td class="px-6 py-4 text-center">
-                                                {{ $item['d_expert1'] }}
+                                                {{ $result['fuzzyInput']['d_expert1'][$index] }}
                                             </td>
                                             <td class="px-6 py-4 text-center">
-                                                {{ $item['s_expert2'] }}
+                                                {{ $result['fuzzyInput']['s_expert2'][$index] }}
                                             </td>
                                             <td class="px-6 py-4 text-center">
-                                                {{ $item['o_expert2'] }}
+                                                {{ $result['fuzzyInput']['o_expert2'][$index] }}
                                             </td>
                                             <td class="px-6 py-4 text-center">
-                                                {{ $item['d_expert2'] }}
+                                                {{ $result['fuzzyInput']['d_expert2'][$index] }}
                                             </td>
                                             <td class="px-6 py-4 text-center">
-                                                {{ $item['s_expert3'] }}
+                                                {{ $result['fuzzyInput']['s_expert3'][$index] }}
                                             </td>
                                             <td class="px-6 py-4 text-center">
-                                                {{ $item['o_expert3'] }}
+                                                {{ $result['fuzzyInput']['o_expert3'][$index] }}
                                             </td>
                                             <td class="px-6 py-4 text-center">
-                                                {{ $item['d_expert3'] }}
+                                                {{ $result['fuzzyInput']['d_expert3'][$index] }}
                                             </td>
                                         </tr>
-                                    @endforeach --}}
+                                    @endforeach
 
                                 </tbody>
                             </table>
@@ -326,11 +425,11 @@
                                         <td scope="row" class="px-6 py-4 text-center">
                                             Linguistik
                                         </td>
-                                        {{-- @foreach ($linguistic as $index => $item)
+                                        @foreach ($result['fuzzyInput']['linguistic'] as $index => $item)
                                             <td class="px-6 py-4 text-center">
                                                 {{ $item }}
                                             </td>
-                                        @endforeach --}}
+                                        @endforeach
                                         </tr>
 
                                 </tbody>
@@ -359,13 +458,56 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="mt-14 flex flex-col gap-10">
+                        <x-tabs.description
+                            title="Variabel Risiko"
+                            id="description_dropdown_5"
+                            :dataDesc="$result['risk']['data_risk']"
+                            :withOption="false"
+                            :dataOpen="true"
+                        />
+
+                        <x-tabs.description
+                            title="Skala Severity (dampak/seberapa serius kondisi yang diakibatkan)"
+                            id="description_dropdown_severity"
+                            :dataDesc="$result['dataDescSOD']['severity']"
+                            :withOption="false"
+                            :dataOpen="true"
+                        />
+
+                        <x-tabs.description
+                            title="Skala Occurance (seberapa sering kegagalan terjadi)"
+                            id="description_dropdown_occurance"
+                            :dataDesc="$result['dataDescSOD']['occurance']"
+                            :withOption="false"
+                            :dataOpen="true"
+                        />
+
+                        <x-tabs.description
+                            title="Skala Detection (deteksi / tingkat lolosnya risiko dari pengontrolan)"
+                            id="description_dropdown_detection"
+                            :dataDesc="$result['dataDescSOD']['detection']"
+                            :withOption="false"
+                            :dataOpen="true"
+                        />
+
+                        <x-tabs.description
+                            title="Skala Linguistik"
+                            id="description_dropdown_linguistic"
+                            :dataDesc="$result['dataDescSOD']['linguistic']"
+                            :withOption="false"
+                            :dataOpen="true"
+                            :withNumber="true"
+                        />
+                    </div>
                 </div>
 
-                <div id="tabs-header-5" class="flex flex-col gap-6">
+                <div id="tabs-header-6" class="flex flex-col gap-6">
                     <div class="flex justify-start">
                         <button type="button"
                                 class="h-full text-neutral-600 border border-neutral-400 hover:bg-neutral-100 font-medium rounded-lg text-base px-5 py-2.5 focus:outline-none"
-                                id="prev-data-5" data-button-tab="prev-tab">
+                                id="prev-data-6" data-button-tab="prev-tab">
                             Sebelumnya
                         </button>
                     </div>
@@ -406,7 +548,7 @@
                                             @endphp
                                             <tr class="{{ $bgColorClass }} last:border-b-0 border-b border-neutral-400">
                                                 <td scope="row" class="px-6 py-4 text-center">
-                                                    {{ $item['rank'] }}
+                                                    {{ $index++ + 1 }}
                                                 </td>
                                                 <td class="px-6 py-4">
                                                     {{ $item['component'] }}
@@ -438,4 +580,5 @@
     <script src="{{ asset('assets/js/detail/pages_one.js') }}"></script>
     <script src="{{ asset('assets/js/detail/pages_two.js') }}"></script>
     <script src="{{ asset('assets/js/detail/chart.js') }}"></script>
+    <script src="{{ asset('assets/js/dropDown.js') }}" ></script>
 @endpush

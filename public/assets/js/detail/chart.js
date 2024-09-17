@@ -65,6 +65,8 @@ $(document).ready(function () {
                     position: "left",
                 },
             },
+            responsive: true,
+            maintainAspectRatio: false,
         },
     };
 

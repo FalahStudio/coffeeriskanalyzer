@@ -201,7 +201,7 @@ class IsmController extends Controller
             }
 
             $ranks = $this->calculateRanks($DrP);
-            $result_ISM['level'] = $this->createLevelDict(array_keys($varRisk), $ranks);
+            $result_ISM['level'] = $this->createLevelDict($varRisk, $ranks);
         
             $DrPAVG = $this->average($DrP);
             $DePAVG = $this->average($DeP);
@@ -329,14 +329,52 @@ class IsmController extends Controller
 
     protected function calculateRanks($DrP)
     {
-        return collect($DrP)->sort()->values()->map(function ($item, $key) {
-            return $key + 1;
-        })->toArray();
+        $max_rank = max($DrP);
+        $reversed_DrP = [];
+        
+        foreach ($DrP as $rank) {
+            $reversed_DrP[] = $max_rank - $rank + 1;
+        }
+        
+        return $reversed_DrP;
     }
 
-    protected function createLevelDict($keys, $values)
+    protected function createLevelDict($codes, $ranks)
     {
-        return array_combine($keys, $values);
+        $codeRankPairs = array_map(null, $codes, $ranks);
+
+        usort($codeRankPairs, function($a, $b) {
+            return $a[1] <=> $b[1];
+        });
+
+        $levelDict = [];
+        $previousRank = null;
+        $currentLevel = 1;
+
+        foreach ($codeRankPairs as $key => $pair) {
+            list($code, $rank) = $pair;
+
+            if ($rank !== $previousRank) {
+                $currentLevel = $rank;
+            }
+            
+            $level = 'Level ' . $currentLevel;
+
+            if (!array_key_exists($level, $levelDict)) {
+                $levelDict[$level] = [];
+            }
+
+            $levelDict[$level][] = $code;
+            $previousRank = $rank;
+        }
+
+        $dataLevelDict = [];
+
+        foreach ($levelDict as $value) {
+            $dataLevelDict[] = $value;
+        }
+
+        return $dataLevelDict;
     }
 
     protected function average($lst) {

@@ -105,7 +105,7 @@
                                         
                                         @php
                                             $decodedRiskData = base64_decode($riskData->data_risk);
-                                            $dataRisk = json_decode($decodedRiskData, true); // Assuming $dataRisk is an array
+                                            $dataRisk = json_decode($decodedRiskData, true);
 
                                             $totalItems = count($dataRisk);
                                             $itemsPerColumn = ceil($totalItems / 4);
