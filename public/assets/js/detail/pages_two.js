@@ -20,9 +20,9 @@ $(document).ready(function () {
             let rowContent = `<div class='flex flex-row gap-2'>`;
             let isLastRow = i === matrixCount;
 
-            rowContent += `<div class='text-center flex justify-center items-center bg-neutral-50 border border-neutral-400 text-neutral-600 text-sm rounded-lg w-full p-2 ${
-                isLastRow ? "bg-neutral-200" : ""
-            }'>${i + 1 === 23 ? "De P" : i + 1}</div>`;
+            rowContent += `<div class='text-center flex justify-center items-center border border-neutral-400 text-neutral-600 text-sm rounded-lg w-full p-2 ${
+                isLastRow ? "bg-neutral-200" : "bg-neutral-50"
+            }'>${i + 1 === matrixCount + 1 ? "De P" : i + 1}</div>`;
 
             for (let j = 1; j <= matrixCount + 1; j++) {
                 let value = "";
@@ -46,7 +46,7 @@ $(document).ready(function () {
                     bgClass = "bg-neutral-200";
                 }
 
-                if (i === 22) {
+                if (i === matrixCount) {
                     bgClass = "bg-neutral-200";
                 }
 
@@ -72,6 +72,6 @@ $(document).ready(function () {
     let matrix = $("#matrix_data_binner").attr("data-risk");
     let dataArray = matrixData.split(" ");
 
-    let matrixHTML = createInputMatrix(5, dataArray);
+    let matrixHTML = createInputMatrix(parseInt(matrix), dataArray);
     $("#matrix_data_binner").html(matrixHTML);
 });

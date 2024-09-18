@@ -172,13 +172,13 @@
                                         <p class="text-sm-body-medium">Level {{ $key++ + 1 }}</p> 
                                     </div>
 
-                                    @foreach ($item as $value)
+                                    @foreach ($item as $i => $value)
                                         <div class="flex flex-wrap gap-20 max-w-20 w-full cursor-pointer" data-tooltip-target="{{ 'level-' . $key . '-' . $value }}" data-tooltip-placement="top">
                                             <span class="text-md-body-semibold text-neutral-700 bg-primary-100 border border-primary-300 p-2.5 w-full flex justify-center items-center rounded">{{ $value }}</span>
                                         </div>
 
                                         <div id='{{ 'level-' . $key . '-' . $value }}' role='tooltip' class='absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-neutral-600 transition-opacity duration-300 bg-white rounded-lg tooltip shadow-[0px_4px_8px_-2px_#10182810,0px_4px_8px_-2px_#10182806] border border-neutral-300'>
-                                            {{ $dataRisk[$value - 1] }}
+                                            {{ $value }}
                                             <div class='tooltip-arrow' data-popper-arrow></div>
                                         </div>
                                     @endforeach

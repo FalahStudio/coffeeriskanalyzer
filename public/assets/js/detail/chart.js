@@ -4,8 +4,6 @@ $(document).ready(function () {
     const dataValue = JSON.parse($(canvas).attr("data-chart").trim());
     const dataValueLine = JSON.parse($(canvas).attr("data-line").trim());
 
-    console.log(dataValue);
-
     const data = {
         datasets: [
             {
