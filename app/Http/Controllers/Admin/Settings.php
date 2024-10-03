@@ -14,6 +14,7 @@ class Settings extends Controller
     {
          $data = [
             'title' => 'Settings',
+            'users' => $this->user->where('role', 'admin')->get(),
         ];
 
         return view('pages.admin.setting.index', $data);

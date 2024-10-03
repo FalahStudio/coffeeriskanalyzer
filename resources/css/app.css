@@ -55,3 +55,16 @@
     /* -webkit-print-color-adjust: exact; */
     print-color-adjust: exact;
 }
+
+.dataTables_paginate {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    gap: 20px;
+}
+
+.dataTables_paginate>span>.paginate_button {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}

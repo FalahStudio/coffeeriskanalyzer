@@ -14,12 +14,15 @@
     {{-- DataTable --}}
     <link href="https://cdn.datatables.net/1.13.7/css/dataTables.tailwindcss.min.css" rel="stylesheet">
 
+    {{-- Icon --}}
+    <link href="https://iconsax.gitlab.io/i/icons.css" rel="stylesheet">
+
     {{-- Custom CSS --}}
     @yield('style')
 </head>
 <body>
     <x-toast/>
-    
+
     <main class="grid {{ request()->is('/') ? 'md:grid-cols-2' : 'grid-cols-1 mx-auto max-w-4xl w-full' }} items-center h-screen gap-10">
         <div class="w-full h-full {{ request()->is('/') ? 'hidden lg:block' : 'hidden' }}">
             <div class="relative w-full h-full">
@@ -28,8 +31,19 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="w-full h-full py-8 px-8 flex flex-col justify-between gap-8 items-center">
+
+            <div class="w-full flex justify-end">
+                <div class="py-2.5 px-3.5 border border-neutral-400 rounded-lg cursor-pointer" data-tooltip-target="user-guide" data-tooltip-placement="left" onclick="location.href='{{ route('userguide')  }}'">
+                    <i class="iconsax" icon-name="info-circle"></i>
+                </div>
+
+                <div id='user-guide' role='tooltip' class='absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-neutral-600 transition-opacity duration-300 bg-white rounded-lg tooltip shadow-[0px_4px_8px_-2px_#10182810,0px_4px_8px_-2px_#10182806] border border-neutral-300'>
+                    Panduan Pemakaian
+                    <div class='tooltip-arrow' data-popper-arrow></div>
+                </div>
+            </div>
 
             <div class="flex flex-col gap-16 justify-center h-full w-full">
                 <div class="flex flex-col gap-6 items-center">

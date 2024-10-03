@@ -125,7 +125,7 @@
                             Selanjutnya
                         </button>
                     </div>
-                    
+
                     <div class="flex flex-col gap-10">
                        <div class="flex flex-col gap-6">
 
@@ -162,19 +162,19 @@
                             Selanjutnya
                         </button>
                     </div>
-                    
+
                     <div class="flex flex-col w-full">
 
                         @foreach ($result['ism']['level'] as $key => $item)
                             <div class="px-10 py-7 first:border-t first:border-neutral-500 border-b border-neutral-500 w-full border-dashed">
                                 <div class="flex flex-wrap items-center gap-6">
                                     <div class="min-w-52">
-                                        <p class="text-sm-body-medium">Level {{ $key++ + 1 }}</p> 
+                                        <p class="text-sm-body-medium">Level {{ $key++ + 1 }}</p>
                                     </div>
 
                                     @foreach ($item as $i => $value)
                                         <div class="flex flex-wrap gap-20 max-w-20 w-full cursor-pointer" data-tooltip-target="{{ 'level-' . $key . '-' . $value }}" data-tooltip-placement="top">
-                                            <span class="text-md-body-semibold text-neutral-700 bg-primary-100 border border-primary-300 p-2.5 w-full flex justify-center items-center rounded">{{ $value }}</span>
+                                            <span class="text-md-body-semibold text-neutral-700 bg-primary-100 border border-primary-300 p-3.5 flex items-center justify-center rounded whitespace-nowrap">{{ $value }}</span>
                                         </div>
 
                                         <div id='{{ 'level-' . $key . '-' . $value }}' role='tooltip' class='absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-neutral-600 transition-opacity duration-300 bg-white rounded-lg tooltip shadow-[0px_4px_8px_-2px_#10182810,0px_4px_8px_-2px_#10182806] border border-neutral-300'>
@@ -211,7 +211,7 @@
                             Selanjutnya
                         </button>
                     </div>
-                    
+
                     <div class="flex flex-col-reverse lg:grid lg:grid-cols-12 gap-6">
 
                         <div class="lg:col-span-8 p-10 rounded-lg border border-neutral-400 w-full h-full">
@@ -235,7 +235,7 @@
                             <div class="grid grid-cols-3">
                                 <div class="col-span-1 font-semibold text-base text-700">Autonomous</div>
                                 <div class="col-span-2 text-base text-500">
-                                    : 
+                                    :
                                     @foreach ($result['ism']['data_result']['autonomous'] as $item)
                                         {{ 'E' . $item }}
                                     @endforeach
@@ -244,7 +244,7 @@
                             <div class="grid grid-cols-3">
                                 <div class="col-span-1 font-semibold text-base text-700">Linkage</div>
                                 <div class="col-span-2 text-base text-500">
-                                    : 
+                                    :
                                     @foreach ($result['ism']['data_result']['linkage'] as $item)
                                         {{ 'E' . $item }}
                                     @endforeach
@@ -253,7 +253,7 @@
                             <div class="grid grid-cols-3">
                                 <div class="col-span-1 font-semibold text-base text-700">Dependant</div>
                                 <div class="col-span-2 text-base text-500">
-                                    : 
+                                    :
                                     @foreach ($result['ism']['data_result']['dependent'] as $item)
                                         {{ 'E' . $item }}
                                     @endforeach
@@ -265,7 +265,7 @@
                             <div class="w-full">
                                 <img src="{{ asset('assets/images/background/Illustration.png') }}" alt="Illustration" />
                             </div>
-                            
+
                         </div>
 
                     </div>
@@ -294,7 +294,7 @@
                             Selanjutnya
                         </button>
                     </div>
-                    
+
                     <div class="flex flex-col gap-4">
                         <h5 class="text-neutral-950 font-semibold text-base">Tabel SOD (Severity , Occurance, Detection)</h5>
 
@@ -380,7 +380,7 @@
                             </table>
                         </div>
                     </div>
-                    
+
                     <div class="flex flex-col gap-4">
                        <h5 class="text-neutral-950 font-semibold text-base">Tabel Linguistik</h5>
 
@@ -436,7 +436,7 @@
                             </table>
                         </div>
                     </div>
-                    
+
                     <div class="flex flex-col gap-4">
                         <h5 class="text-neutral-950 font-semibold text-base">Keterangan</h5>
 
@@ -511,7 +511,7 @@
                             Sebelumnya
                         </button>
                     </div>
-                    
+
                     <div class="flex flex-col gap-10">
                        <div class="w-full h-full flex justify-center items-center">
                             <div class="relative overflow-x-auto border border-neutral-400 rounded-lg overflow-hidden">

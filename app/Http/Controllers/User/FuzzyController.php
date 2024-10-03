@@ -16,7 +16,7 @@ class FuzzyController extends Controller
         if ($checkSchema) {
             $userInput = $this->result->where('schema_id', $checkSchema->id)->where('key', 'fuzzy_' . $userId)->first();
             $getRiskData = $this->risk->where('schema_id', $checkSchema->id)->first();
-            
+
             $dataProcessIsm = $this->result->where('schema_id', $checkSchema->id)->where('key', 'process_ism_' . $schemaId)->first();
 
             if (!$userInput) {
@@ -25,7 +25,7 @@ class FuzzyController extends Controller
                     'riskData' => $getRiskData,
                     'processIsm' => $dataProcessIsm->value,
                 ];
-                
+
                 return view('pages.user.userFuzzy.index', $data);
             }
 
@@ -93,14 +93,14 @@ class FuzzyController extends Controller
                 ];
 
                 $savedResultFuzzy = $this->result->create($dataInputFuzzy);
-                
+
                 if ($savedResultFuzzy) {
                     $totalUsersFuzzy = 3;
                     $completedUsersFuzzy = $this->result->where('schema_id', $schemaId)->where('key', 'like', 'fuzzy_%')->distinct('key')->count();
 
                     if ($completedUsersFuzzy !== $totalUsersFuzzy) {
                         return redirect('/' . $userId . '/schema/' . $schemaId . '/waiting-for-another');
-                    }                    
+                    }
                 } else {
                     $flash = [
                         'title' => 'Terjadi kesalahan',
@@ -129,7 +129,7 @@ class FuzzyController extends Controller
             $outputFuzzyDataRaw = $this->result->where('schema_id', $schemaId)->where('key', 'process_ism_' . $schemaId)->first();
             $outputFuzzyData = base64_decode($outputFuzzyDataRaw->value);
             $outputFuzzyDataDecode = json_decode($outputFuzzyData);
-            
+
             $dataProcess = [
                 'output_ism' => [
                     'linkage'       => $outputFuzzyDataDecode->data_result->linkage,
@@ -137,7 +137,7 @@ class FuzzyController extends Controller
                 ],
                 'input_fuzzy' => [],
             ];
-            
+
             foreach ($dataInput as $item) {
                 $item = json_decode($item);
 
@@ -156,7 +156,7 @@ class FuzzyController extends Controller
                 ];
 
             }
-            
+
             $inputString = json_encode($dataProcess);
             $getRiskData = $this->risk->where('schema_id', $schemaId)->first();
             $getRiskDataDecode64 = base64_decode($getRiskData->data_risk);
@@ -200,8 +200,7 @@ class FuzzyController extends Controller
                 $getSchema = $this->schema->where('id', $schemaId)->first();
                 $getSchema->status = 1;
                 $getSchema->save();
-                // return redirect('/' . $schemaId . '/result');
-                return redirect('/');
+                return redirect('/schema/' . $schemaId . '/result');
             } else {
                 $flash = [
                     'title' => 'Terjadi kesalahan',
@@ -211,10 +210,10 @@ class FuzzyController extends Controller
                 return redirect()->back()->withInput()->with('error' , $flash);
             }
 
-            
+
             // $processedData = $this->processDataISM($inputString, $ordo, $dataRisk);
             // $decodeProcess = json_decode($processedData, true);
-            
+
             // $dataIsmProcess = [
             //     'data_input' => $decodeProcess['data_input'],
             //     'data_mirror' => $decodeProcess['data_mirror'],
@@ -263,7 +262,7 @@ class FuzzyController extends Controller
     protected function getValueSODL($data)
     {
         $numbers = [];
-        
+
         foreach ($data as $key => $value) {
             if (preg_match('/(s|o|d)_code_E\d+_(\d+)/', $value, $matches)) {
                 $numbers[$key] = (int)$matches[2];
@@ -284,7 +283,7 @@ class FuzzyController extends Controller
                 $numbers[$key] = $dataLinguistic;
             }
         }
-        
+
         return $numbers;
     }
 
@@ -348,7 +347,7 @@ class FuzzyController extends Controller
             'Occurance' => 0,
             'Detection' => 0,
             'LS' => '',
-            'LO' => '', 
+            'LO' => '',
             'LD' => ''
         ];
     }
@@ -370,7 +369,7 @@ class FuzzyController extends Controller
     private function calculate_rio($pakar_list)
     {
         $weightxO = 0;
-        
+
         foreach ($pakar_list as $pakar) {
             foreach ($this->FuzzyO[$pakar['Occurance']] as $number) {
                 $weightxO += $pakar['weight'] * $number;
@@ -384,7 +383,7 @@ class FuzzyController extends Controller
     private function calculate_rid($pakar_list)
     {
         $weightxD = 0;
-        
+
         foreach ($pakar_list as $pakar) {
             foreach ($this->FuzzyD[$pakar['Detection']] as $number) {
                 $weightxD += $pakar['weight'] * $number;
@@ -469,7 +468,7 @@ class FuzzyController extends Controller
 
         return $result;
     }
-    
+
     private function matrix_to_string($matrix)
     {
         $flattened = [];
@@ -531,7 +530,7 @@ class FuzzyController extends Controller
         $simulated_language = [$P1L, $P2L, $P3L];
 
         $list_resiko_data = [];
-        
+
         foreach ($simulated_input as $i => $pakar_list) {
             foreach ($pakar_list as $j => $values) {
                 $listResiko[$j]['listPakar'][$i]['Severity'] = $values[0];
@@ -594,13 +593,13 @@ class FuzzyController extends Controller
             $i++;
         }
         unset($row);
-        
+
         $data_input = $simulated_input;
         $result_FUZZY = [];
 
         $result_FUZZY["data_sod"] = [];
 
-        
+
         for ($i = 0; $i < count($data_input); $i++) {
             $result_FUZZY["data_sod"]["risk" . ($i+1)] = [
                 'E' . $i + 1,

@@ -13,6 +13,9 @@
 
     {{-- DataTable --}}
     <link href="https://cdn.datatables.net/1.13.7/css/dataTables.tailwindcss.min.css" rel="stylesheet">
+
+    {{-- Icon --}}
+    <link href="https://iconsax.gitlab.io/i/icons.css" rel="stylesheet">
 </head>
 <body>
     <x-toast/>
@@ -25,7 +28,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="w-full h-full py-8 px-8 flex flex-col justify-between gap-8 items-center">
             <p class="text-center w-full text-neutral-950 text-lg-body-semibold">
                 {{ config('app.name') }}

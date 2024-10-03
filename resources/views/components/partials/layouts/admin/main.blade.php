@@ -13,6 +13,9 @@
 
     {{-- DataTable --}}
     <link href="https://cdn.datatables.net/1.13.7/css/dataTables.tailwindcss.min.css" rel="stylesheet">
+
+    {{-- Icon --}}
+    <link href="https://iconsax.gitlab.io/i/icons.css" rel="stylesheet">
 </head>
 <body>
     <x-partials.navbar.admin />

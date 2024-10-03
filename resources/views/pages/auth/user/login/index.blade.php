@@ -4,7 +4,7 @@
     <section class="flex flex-col gap-16">
         <div class="flex flex-col gap-10 items-center w-full">
             <form method="post" class="flex flex-col gap-5 w-full">
-                @csrf 
+                @csrf
                 <x-input.inputField
                     inputId="email"
                     type="email"
@@ -20,7 +20,7 @@
                     weight="regular"
                     type="submit"
                 />
-            </form>         
+            </form>
         </div>
 
         <div class="flex flex-col gap-2 text-neutral-600 text-md-body-regular">
@@ -35,6 +35,6 @@
             <div>
                 <a href="{{ route('history') }}" class="text-md-body-regular text-primary-600">Klik disini</a>
             </div>
-        </div>        
+        </div>
     </section>
 @endsection

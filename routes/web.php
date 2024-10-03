@@ -8,6 +8,7 @@ use App\Http\Controllers\User\FuzzyController;
 use App\Http\Controllers\User\IsmController;
 use App\Http\Controllers\User\ResultsController;
 use App\Http\Controllers\User\UserGuide;
+use App\Http\Controllers\User\FuzzyResults;
 use App\Http\Controllers\User\WaitingController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +38,7 @@ Route::middleware([AdminMiddleware::class])->group(function() {
 Route::get('/get/schema/{id}', [Dashboard::class, 'getSchema']);
 
 // User
-Route::get('/user-guide', [UserGuide::class, 'index']);
+Route::get('/user-guide', [UserGuide::class, 'index'])->name('userguide');
 Route::get('/{userId}', [UserAuthentication::class, 'loginUser']);
 Route::post('/{userId}', [UserAuthentication::class, 'loginUserCheck']);
 
@@ -47,8 +48,11 @@ Route::post('/{userId}/schema/{schemaId}/ism', [IsmController::class, 'store']);
 Route::get('/{userId}/schema/{schemaId}/fuzzy', [FuzzyController::class, 'index']);
 Route::post('/{userId}/schema/{schemaId}/fuzzy', [FuzzyController::class, 'store']);
 
+Route::get('schema/{schemaId}/result', [FuzzyResults::class, 'index']);
+
 Route::get('/{userId}/schema/{schemaId}/waiting-for-another', [WaitingController::class, 'index']);
 
 // History and Result
-ROute::get('/data/history', [ResultsController::class, 'index'])->name('history');
-ROute::get('/data/result/{schemaId}', [ResultsController::class, 'detail'])->name('detail');
+Route::get('/data/history', [ResultsController::class, 'index'])->name('history');
+Route::get('/data/result/{schemaId}', [ResultsController::class, 'detail'])->name('detail');
+

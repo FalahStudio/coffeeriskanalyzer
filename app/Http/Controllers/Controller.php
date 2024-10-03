@@ -14,7 +14,7 @@ abstract class Controller
 
     public function __construct()
     {
-        $this->user = new UserModel();   
+        $this->user = new UserModel();
         $this->userCredential = new UserCredentialModel();
         $this->schema = new SchemaModel();
         $this->risk = new RiskModel();

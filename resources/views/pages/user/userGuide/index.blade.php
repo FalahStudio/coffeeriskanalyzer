@@ -25,55 +25,37 @@
 
                             <li role="presentation">
                                 <button class="flex items-center gap-2" id="overview-styled-tab" data-tabs-target="#styled-overview" type="button" role="tab" aria-controls="overview" aria-selected="false">
-                                    <svg class="w-4 h-4 me-2 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                                        <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"/>
-                                    </svg>
-
+                                    <i class="iconsax w-2xl" icon-name="minus"></i>
                                     Overview
                                 </button>
                             </li>
                             <li role="presentation">
                                 <button class="flex items-center gap-2" id="prev-analysis-styled-tab" data-tabs-target="#styled-prev-analysis" type="button" role="tab" aria-controls="prev-analysis" aria-selected="false">
-                                    <svg class="w-4 h-4 me-2 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                                        <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"/>
-                                    </svg>
-
+                                    <i class="iconsax w-2xl" icon-name="minus"></i>
                                     Melihat analisis terdahulu
                                 </button>
                             </li>
                             <li role="presentation">
                                 <button class="flex items-center gap-2" id="new-analysis-styled-tab" data-tabs-target="#styled-new-analysis" type="button" role="tab" aria-controls="new-analysis" aria-selected="false">
-                                    <svg class="w-4 h-4 me-2 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                                        <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"/>
-                                    </svg>
-
+                                    <i class="iconsax w-2xl" icon-name="minus"></i>
                                     Pembuatan analisis baru
                                 </button>
                             </li>
                             <li role="presentation">
                                 <button class="flex items-center gap-2" id="first-quistioner-styled-tab" data-tabs-target="#styled-first-quistioner" type="button" role="tab" aria-controls="first-quistioner" aria-selected="false">
-                                    <svg class="w-4 h-4 me-2 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                                        <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"/>
-                                    </svg>
-
+                                    <i class="iconsax w-2xl" icon-name="minus"></i>
                                     Isi kuisioner tahap 1
                                 </button>
                             </li>
                             <li role="presentation">
                                 <button class="flex items-center gap-2" id="second-quistioner-styled-tab" data-tabs-target="#styled-second-quistioner" type="button" role="tab" aria-controls="second-quistioner" aria-selected="false">
-                                    <svg class="w-4 h-4 me-2 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                                        <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"/>
-                                    </svg>
-
+                                    <i class="iconsax w-2xl" icon-name="minus"></i>
                                     Isi kuisioner tahap 2
                                 </button>
                             </li>
                             <li role="presentation">
                                 <button class="flex items-center gap-2" id="result-styled-tab" data-tabs-target="#styled-result" type="button" role="tab" aria-controls="result" aria-selected="false">
-                                    <svg class="w-4 h-4 me-2 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                                        <path d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z"/>
-                                    </svg>
-
+                                    <i class="iconsax w-2xl" icon-name="minus"></i>
                                     Hasil analisis
                                 </button>
                             </li>
@@ -231,7 +213,7 @@
                                     </div>
 
                                     <p>
-                                        Selanjutnya jika anda mendapati halaman tunggu setelah anda klik proses data, maka anda belum dapat melihat hasil dari analisis risiko kopi. Dikarenakan hasil akhir merupakan analisis dari kombinasi jawaban anda dan kedua expert lainya. 
+                                        Selanjutnya jika anda mendapati halaman tunggu setelah anda klik proses data, maka anda belum dapat melihat hasil dari analisis risiko kopi. Dikarenakan hasil akhir merupakan analisis dari kombinasi jawaban anda dan kedua expert lainya.
                                     </p>
 
                                     <div class="h-full w-full overflow-hidden rounded-xl shadow-lg mb-5">
@@ -277,7 +259,7 @@
                                     <div class="h-full w-full overflow-hidden rounded-xl shadow-lg mb-5">
                                         <img src="{{ asset('assets/images/userGuide/login.png') }}" alt="Images Login User Guide" class="h-full w-full object-cover object-center">
                                     </div>
-                                    
+
                                     <p>
                                         Jika anda ingin melihat hasil analisis anda kembali, anda dapat melihat melalui analisis terdahulu pada laman pertama yang ditampilkan pada web ini (namun jika analisis anda masih termasuk 10 analisis terakhir yang dilakukan). Terimakasih, selamat mencoba.
                                     </p>
@@ -292,7 +274,7 @@
 
                         </div>
                     </div>
-                    
+
                     <div class="col-span-1"></div>
                 </div>
             </div>

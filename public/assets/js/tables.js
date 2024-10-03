@@ -5,9 +5,9 @@ $(document).ready(function () {
         ordering: false,
         language: {
             paginate: {
-                next: '<li><a href="#" class="flex items-center justify-center w-8 h-8 ms-0 leading-tight text-gray-500 bg-white rounded-s-lg hover:bg-gray-100 hover:text-gray-700"> <span class="sr-only">Previous</span> <i class="iconsax w-6 h-6 text-2xl leading-none" icon-name="chevron-right"></i></a></li>',
-                previous:
-                    '<li><a href="#" class="flex items-center justify-center w-8 h-8 ms-0 leading-tight text-gray-500 bg-white rounded-s-lg hover:bg-gray-100 hover:text-gray-700"> <span class="sr-only">Previous</span> <i class="iconsax w-6 h-6 text-2xl leading-none" icon-name="chevron-left"></i> </a> </li>',
+                sNext: '<li><a href="#" class="flex items-center justify-center w-8 h-8 ms-0 leading-tight text-gray-500 bg-white rounded-s-lg hover:bg-gray-100 hover:text-gray-700"> <span class="sr-only">Previous</span> <i class="iconsax text-2xl leading-none" icon-name="chevron-right"></i></a></li>',
+                sPrevious:
+                    '<li><a href="#" class="flex items-center justify-center w-8 h-8 ms-0 leading-tight text-gray-500 bg-white rounded-s-lg hover:bg-gray-100 hover:text-gray-700"> <span class="sr-only">Previous</span> <i class="iconsax text-2xl leading-none" icon-name="chevron-left"></i> </a> </li>',
             },
             zeroRecords: "Tidak ada data yang ditemukan",
         },
